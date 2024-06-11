@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Esta clase representa un parqueadero con TAMANO puestos.
@@ -327,7 +328,7 @@ public class Parqueadero {
             int totalCarros = 0;
             for (Puesto puesto : puestos){
                 if (puesto.estaOcupado()){
-                    horasTotales += puesto.getCarro().darTiempoEnParqueadero(horaActual);
+                    horasTotales += puesto.darCarro().darTiempoEnParqueadero(horaActual);
                     totalCarros++;
                 }
             }
@@ -337,7 +338,7 @@ public class Parqueadero {
     public boolean hayCarrosMasDeOchoHoras(){
     int count = 0;
     for(Puesto puesto : puestos) {
-        if(puesto.estaOcupado() && puesto.getCarro().darTiempoEnParqueadero(darHoraActual()) > 8) {
+        if(puesto.estaOcupado() && puesto.darCarro().darTiempoEnParqueadero(darHoraActual()) > 8) {
             count++;
         }
     }
@@ -353,8 +354,8 @@ public class Parqueadero {
 public ArrayList<Carro> darCarrosMasDeTresHorasParqueados( ) {
     ArrayList<Carro> carros = new ArrayList<>();
     for(Puesto puesto : puestos) {
-        if(puesto.estaOcupado() && puesto.getCarro().darTiempoEnParqueadero(darHoraActual()) > 3) {
-            carros.add(puesto.getCarro());
+        if(puesto.estaOcupado() && puesto.darCarro().darTiempoEnParqueadero(darHoraActual()) > 3) {
+            carros.add(puesto.darCarro());
         }
     }
     System.out.println("There are " + carros.size() + " cars that have been parked for more than 3 hours.");
@@ -364,7 +365,7 @@ public ArrayList<Carro> darCarrosMasDeTresHorasParqueados( ) {
 public boolean hayCarrosPlacaIgual( ) {
     HashSet<String> placas = new HashSet<>();
     for(Puesto puesto : puestos) {
-        if(puesto.estaOcupado() && !placas.add(puesto.getCarro().darPlaca())) {
+        if(puesto.estaOcupado() && !placas.add(puesto.darCarro().darPlaca())) {
             System.out.println("Error: There are multiple cars with the same license plate.");
             return true;
         }
@@ -385,7 +386,7 @@ public boolean hayCarrosPlacaIgual( ) {
     {
     int count = 0;
     for(Puesto puesto : puestos) {
-        if(puesto.estaOcupado() && puesto.getCarro().darPlaca().startsWith("PB")) {
+        if(puesto.estaOcupado() && puesto.darCarro().darPlaca().startsWith("PB")) {
             count++;
         }
     }
@@ -399,19 +400,18 @@ public boolean hayCarrosPlacaIgual( ) {
      *
      * @return Respuesta 2.
      */
-    public int metodo2( )
-    {
-        int desocuparParqueadero; {
-    int count = 0;
-    for(Puesto puesto : puestos) {
-        if(puesto.estaOcupado()) {
-            puesto.desocupar();
-            count++;
+    public int metodo2( ) {
+        int desocuparParqueadero;
+        {
+            int count = 0;
+            for (Puesto puesto : puestos) {
+                if (puesto.estaOcupado()) {
+                    puesto.sacarCarro();
+                    count++;
+                }
+            }
+            System.out.println("The parking lot has been cleared. " + count + " cars have been removed.");
+            return count;
         }
     }
-    System.out.println("The parking lot has been cleared. " + count + " cars have been removed.");
-    return count;
-    }
-    }
-
 }
