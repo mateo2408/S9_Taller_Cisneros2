@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 /**
  * Esta clase representa un parqueadero con TAMANO puestos.
@@ -112,7 +111,7 @@ public class Parqueadero {
     public String darPlacaCarro( int pPosicion )
     {
         String respuesta = "";
-        if( estaOcupado( pPosicion ) )
+        if( estaOcupado() )
         {
             respuesta = "Placa: " + puestos[ pPosicion ].darCarro( ).darPlaca( );
         }
@@ -165,11 +164,11 @@ public class Parqueadero {
      * Sirve para sacar un carro del parqueadero y saber la cantidad de dinero que debe pagar. <br>
      * <b>pre: </b> El arreglo de puestos no est� vac�o. <br>
      * <b>post: </b> El carro sali� del parqueadero y el puesto que ocupaba, ahora est� libre.
-     * @param pPlaca Placa del carro que va a salir. pPlaca != null.
+     *
      * @return Retorna el valor a pagar. Si el carro no se encontraba dentro del parqueadero entonces retorna CARRO_NO_EXISTE. <br>
-     *         Si el parqueadero ya estaba cerrado retorna PARQUEADERO_CERRADO.
+     * Si el parqueadero ya estaba cerrado retorna PARQUEADERO_CERRADO.
      */
-    public int sacarCarro( String pPlaca )
+    public Main.Carro sacarCarro()
     {
         int resultado = 0;
         if( !abierto )
@@ -310,10 +309,10 @@ public class Parqueadero {
 
     /**
      * Indica si un puesto est� ocupado.
-     * @param pPuesto El puesto que se quiere saber si est� ocupado. pPuesto >= 0 && pPuesto < puestos.length.
+     *
      * @return Retorna true si el puesto est� ocupado. False en caso contrario.
      */
-    public boolean estaOcupado( int pPuesto )
+    public boolean estaOcupado( )
     {
         boolean ocupado = puestos[ pPuesto ].estaOcupado( );
         return ocupado;

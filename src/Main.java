@@ -1,11 +1,7 @@
-import java.util.Random;
 import java.util.Scanner;
 
-import static java.sql.DriverManager.println;
-import static jdk.internal.jimage.decompressor.CompressIndexes.readInt;
-
 public class Main {
-    public void main(String[] args)
+    public static void main(String[] args)
     {
         Scanner scanner = new Scanner(System.in);
         Parqueadero parqueadero = new Parqueadero();
@@ -26,17 +22,17 @@ public class Main {
                     System.out.println("Ingrese la placa del carro");
                     String placa = scanner.next();
                     Carro carro = new Carro(placa);
-                    parqueadero.ingresarCarro(carro);
+                    parqueadero.entrarCarro(carro.toString());
                     break;
                 case 2:
                     System.out.println("Ingrese la placa del carro a sacar");
                     String placaSacar = scanner.next();
-                    parqueadero.sacarCarro(placaSacar);
+                    parqueadero.sacarCarro();
                     break;
                 case 3:
                     System.out.println("Ingrese la placa del carro a consultar");
                     String placaConsultar = scanner.next();
-                    Carro carroConsultado = parqueadero.consultarCarro(placaConsultar);
+                    Carro carroConsultado = parqueadero.sacarCarro();
                     if (carroConsultado != null) {
                         System.out.println("El carro con placa " + placaConsultar + " está en el parqueadero");
                     } else {
@@ -44,10 +40,10 @@ public class Main {
                     }
                     break;
                 case 4:
-                    parqueadero.consultarEstadoParqueadero();
+                    parqueadero.estaOcupado();
                     break;
                 case 5:
-                    parqueadero.limpiarParqueadero();
+                    parqueadero.sacarCarro();
                     break;
                 case 6:
                     System.out.println("Saliendo...");
@@ -57,7 +53,7 @@ public class Main {
             }
         }
     }
-    public class Carro {
+    public static class Carro {
     private String placa;
 
     public Carro(String placa) {
