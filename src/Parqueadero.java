@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+
 /**
  * Esta clase representa un parqueadero con TAMANO puestos.
  */
@@ -373,11 +376,13 @@ public boolean hayCarrosPlacaIgual( ) {
 
     /**
      * M�todo de extensi�n 1.
+     *
      * @return Respuesta 1.
      */
-    public String metodo1( )
+    public int metodo1( )
     {
-        public int contarCarrosQueComienzanConPlacaPB( ) {
+         int contarCarrosQueComienzanConPlacaPB;
+    {
     int count = 0;
     for(Puesto puesto : puestos) {
         if(puesto.estaOcupado() && puesto.getCarro().darPlaca().startsWith("PB")) {
@@ -391,11 +396,12 @@ public boolean hayCarrosPlacaIgual( ) {
     }
     /**
      * M�todo de extensi�n 2.
+     *
      * @return Respuesta 2.
      */
-    public String metodo2( )
+    public int metodo2( )
     {
-        public int desocuparParqueadero( ) {
+        int desocuparParqueadero; {
     int count = 0;
     for(Puesto puesto : puestos) {
         if(puesto.estaOcupado()) {

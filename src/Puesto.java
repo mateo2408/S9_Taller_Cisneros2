@@ -107,4 +107,11 @@ public class Puesto {
 
         return tieneCarro;
     }
+
+    public Carro getCarro() {
+        
+    }
+
+    public void desocupar() {
+    }
 }
